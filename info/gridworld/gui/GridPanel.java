@@ -1,6 +1,6 @@
-/* 
+/*
  * AP(r) Computer Science GridWorld Case Study:
- * Copyright(c) 2002-2006 College Entrance Examination Board 
+ * Copyright(c) 2002-2006 College Entrance Examination Board
  * (http://www.collegeboard.com).
  *
  * This code is free software; you can redistribute it and/or modify
@@ -11,7 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * @author Julie Zelenski
  * @author Cay Horstmann
  */
@@ -70,14 +70,14 @@ public class GridPanel extends JPanel implements Scrollable,
     private int numRows, numCols, originRow, originCol;
     private int cellSize; // the size of each cell, EXCLUDING the gridlines
     private boolean toolTipsEnabled;
-    private Color backgroundColor = Color.WHITE;
+    private Color backgroundColor = Color.YELLOW;
     private ResourceBundle resources;
     private DisplayMap displayMap;
     private Location currentLocation;
     private Timer tipTimer;
     private JToolTip tip;
     private JPanel glassPane;
-    
+
     /**
      * Construct a new GridPanel object with no grid. The view will be
      * empty.
@@ -102,7 +102,7 @@ public class GridPanel extends JPanel implements Scrollable,
             return;
 
         Insets insets = getInsets();
-        g2.setColor(backgroundColor); 
+        g2.setColor(backgroundColor);
         g2.fillRect(insets.left, insets.top, numCols * (cellSize + 1) + 1, numRows
                 * (cellSize + 1) + 1);
 
@@ -153,10 +153,10 @@ public class GridPanel extends JPanel implements Scrollable,
 
         int miny = Math.max(0, (curClip.y - top) / (cellSize + 1)) * (cellSize + 1) + top;
         int minx = Math.max(0, (curClip.x - left) / (cellSize + 1)) * (cellSize + 1) + left;
-        int maxy = Math.min(numRows, 
-                (curClip.y + curClip.height - top + cellSize) / (cellSize + 1)) 
+        int maxy = Math.min(numRows,
+                (curClip.y + curClip.height - top + cellSize) / (cellSize + 1))
                 * (cellSize + 1) + top;
-        int maxx = Math.min(numCols, 
+        int maxx = Math.min(numCols,
                 (curClip.x + curClip.width - left + cellSize) / (cellSize + 1))
                 * (cellSize + 1) + left;
 
@@ -190,7 +190,7 @@ public class GridPanel extends JPanel implements Scrollable,
         for (int index = 0; index < occupantLocs.size(); index++)
         {
             Location loc = (Location) occupantLocs.get(index);
-            
+
             int xleft = colToXCoord(loc.getCol());
             int ytop = rowToYCoord(loc.getRow());
             drawOccupant(g2, xleft, ytop, grid.get(loc));
@@ -275,7 +275,7 @@ public class GridPanel extends JPanel implements Scrollable,
 
         if (grid.getNumRows() == -1 && grid.getNumCols() == -1)
         {
-            numRows = numCols = 2000; 
+            numRows = numCols = 2000;
             // This determines the "virtual" size of the pan world
         }
         else
@@ -283,7 +283,7 @@ public class GridPanel extends JPanel implements Scrollable,
             numRows = grid.getNumRows();
             numCols = grid.getNumCols();
         }
-        recalculateCellSize(MIN_CELL_SIZE);        
+        recalculateCellSize(MIN_CELL_SIZE);
     }
 
     // private helpers to calculate extra width/height needs for borders/insets.
@@ -303,7 +303,7 @@ public class GridPanel extends JPanel implements Scrollable,
      */
     public Dimension getPreferredSize()
     {
-        return new Dimension(numCols * (cellSize + 1) + 1 + extraWidth(), 
+        return new Dimension(numCols * (cellSize + 1) + 1 + extraWidth(),
                 numRows * (cellSize + 1) + 1 + extraHeight());
     }
 
@@ -313,7 +313,7 @@ public class GridPanel extends JPanel implements Scrollable,
      */
     public Dimension getMinimumSize()
     {
-        return new Dimension(numCols * (MIN_CELL_SIZE + 1) + 1 + extraWidth(), 
+        return new Dimension(numCols * (MIN_CELL_SIZE + 1) + 1 + extraWidth(),
                 numRows * (MIN_CELL_SIZE + 1) + 1 + extraHeight());
     }
 
@@ -565,10 +565,10 @@ public class GridPanel extends JPanel implements Scrollable,
             int desiredCellSize = Math.min(
                     (viewableSize.height - extraHeight()) / numRows,
                     (viewableSize.width - extraWidth()) / numCols) - 1;
-            // now we want to approximate this with 
+            // now we want to approximate this with
             // DEFAULT_CELL_SIZE * Math.pow(2, k)
             cellSize = DEFAULT_CELL_SIZE;
-            if (cellSize <= desiredCellSize)                
+            if (cellSize <= desiredCellSize)
                 while (2 * cellSize <= desiredCellSize)
                     cellSize *= 2;
             else
@@ -615,7 +615,7 @@ public class GridPanel extends JPanel implements Scrollable,
 
     public Dimension getPreferredScrollableViewportSize()
     {
-        return new Dimension(DEFAULT_CELL_COUNT * (DEFAULT_CELL_SIZE + 1) + 1 + extraWidth(), 
+        return new Dimension(DEFAULT_CELL_COUNT * (DEFAULT_CELL_SIZE + 1) + 1 + extraWidth(),
                 DEFAULT_CELL_COUNT * (DEFAULT_CELL_SIZE + 1) + 1 + extraHeight());
     }
 

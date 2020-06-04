@@ -1,2 +1,2 @@
-javac -cp ".:./gridworld.jar" BugRunner.java
-java -cp ".:./gridworld.jar" BugRunner
+javac -cp ".:./gridworld.jar" WallRunner.java
+java -cp ".:./gridworld.jar" WallRunner

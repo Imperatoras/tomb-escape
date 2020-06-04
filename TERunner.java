@@ -33,35 +33,34 @@
      public static void main(String[] args)
      {
          ActorWorld world = new ActorWorld();
-         for(int x = 0; x < 10; x++){
-           for(int y = 0; y < 10; y++){
+         for(int x = 0; x < 15; x++){ //For some reason, the x and y are swapped. DON'T ASK.
+           for(int y = 0; y < 15; y++){
              if(x == 0){ //populates the top, leaves exit gate
-               if(y < 4 || y > 5){
+               if(y < 6 || y > 8){
                  addWall(x,y,world);
                }
              }
-             if((y == 0 || y == 9)|| x == 9){ //populates the sides with barriers
+             if((y == 0 || y == 14)|| x == 14){ //populates the sides with barriers
                addWall(x,y,world);
              }
-             if((y == 2 && x < 5)||(y == 7 && x < 5)){ //creates first 2 partitions around goal
+             if((y==4||y==10)&&(x<4)){ //makes goal zone vert walls
                addWall(x,y,world);
              }
-             if((x==4 && (y > 2 && y < 4))||(x==4 && (y>5 && y<7))){ //further delineates goal room
+             if(x==4&&((y>1&&y<7)||(y>7&&y<13))){ //makes goal zone horiz walls
                addWall(x,y,world);
              }
-             if(x==6 && y<8){ //splits main hallway from aux hallway
-               addWall(x,y,world);
-             }
-             if(x==7 && (y%4==3 && y<8)){//ziggity zaggity!
-               addWall(x,y,world);
-             }
-             if(x==8 && (y%4==1 && y<8)){ //more zig zag zug
-               addWall(x,y,world);
+             if(x==6){ //Separates top and bottom zones
+               if(y<4 || y>10){
+                 addWall(x,y,world);
+               }
+               if(y>5 && y < 9){
+                 addWall(x,y,world);
+               }
              }
            }
          }
          Mummy agel = new Mummy();
-         world.add(new Location(5,5),agel);
+         world.add(new Location(9,5),agel);
          world.show();
      }
      public static void addWall(int x, int y, ActorWorld world){ //cuts out repetitive code in if statements

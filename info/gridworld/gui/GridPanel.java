@@ -106,6 +106,15 @@ public class GridPanel extends JPanel implements Scrollable,
         g2.fillRect(insets.left, insets.top, numCols * (cellSize + 1) + 1, numRows
                 * (cellSize + 1) + 1);
 
+        // Image as background code
+        BufferedImage img = null;
+        try {
+          img = ImageIO.read(new File("floor.JPG")); //or .JPG
+        } catch (IOException e) {
+        }
+        g2.drawImage(img, insets.left, insets.top, numCols * (cellSize + 1) + 1, numRows
+        * (cellSize + 1) + 1, 0, 0, img.getWidth(), img.getHeight(), null);
+
         drawWatermark(g2);
         drawGridlines(g2);
         drawOccupants(g2);

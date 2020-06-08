@@ -2,12 +2,14 @@
 
 public class Player extends Actor {
   private int health;
+  private int keys;
 
-  public Player () {
-    health = 3;                                    //necessary attributes?
+  public Player () {                                   //necessary attributes?
+    health = 3;
+    keys = 0;
   }
 
-  public boolean canMove (Location loc) {
+  public boolean canMove (Location loc) {              //Makes sure there arent walls
     Grid<Actor> gr = getGrid();
     if (gr == null)
         return false;
@@ -17,11 +19,28 @@ public class Player extends Actor {
     return !(neighbor == Wall);
   }
 
-  public int getHealth () {
+  public int getHealth () {                             //self-explanatory
     return health;
   }
 
-  public void up () {                             //moves up
+  public void setHealth (int num) {
+    health = num;
+  }
+
+  public ArrayList<Actor> getEnemies() {                //gets enemies in surrounding cells
+      return getGrid().getNeighbors(getLocation());
+  }
+
+  public void changeHealth(ArrayList<Actor> actors) {
+      int temp = getHealth();
+      for (Actor a : actors) {
+          if (!(a instanceof Wall))
+            temp--;
+      }
+      setHealth(temp);
+  }
+
+  public void up () {                                   //moves up
     Grid<Actor> gr = getGrid();
     if (gr == null)
         return;
@@ -32,7 +51,7 @@ public class Player extends Actor {
     }
   }
 
-  public void down () {                             //moves down
+  public void down () {                                 //moves down
     Grid<Actor> gr = getGrid();
     if (gr == null)
         return;
@@ -43,7 +62,7 @@ public class Player extends Actor {
     }
   }
 
-  public void left () {                             //moves to the left
+  public void left () {                                 //moves to the left
     Grid<Actor> gr = getGrid();
     if (gr == null)
         return;
@@ -54,7 +73,7 @@ public class Player extends Actor {
     }
   }
 
-  public void right () {                             //moves to the right
+  public void right () {                                //moves to the right
     Grid<Actor> gr = getGrid();
     if (gr == null)
         return;

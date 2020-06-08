@@ -50,12 +50,17 @@
                addWall(x,y,world);
              }
              if(x==6){ //Separates top and bottom zones
-               if(y<4 || y>10){
+               if((y<4 || y>10)||(y>5 && y<9)){
                  addWall(x,y,world);
                }
-               if(y>5 && y < 9){
+             }
+             if(x==11){//creates player room at bottom
+               if(y>2){
                  addWall(x,y,world);
                }
+             }
+             if(x==8 && y<12){
+               addWall(x,y,world);
              }
            }
          }

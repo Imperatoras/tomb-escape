@@ -54,7 +54,6 @@ public class GUIController<T>
 
     private Timer timer;
     private JButton stepButton, runButton, stopButton;
-	private JButton stuffButton;		//NEW Button
     private JComponent controlPanel;
     private GridPanel display;
     private WorldFrame<T> parentFrame;
@@ -63,9 +62,6 @@ public class GUIController<T>
     private DisplayMap displayMap;
     private boolean running;
     private Set<Class> occupantClasses;
-
-	private int select;   		//new variables to lock onto an Actor
-	private Location selLoc;
 
     /**
      * Creates a new controller tied to the specified display and gui
@@ -78,9 +74,6 @@ public class GUIController<T>
     public GUIController(WorldFrame<T> parent, GridPanel disp,
             DisplayMap displayMap, ResourceBundle res)
     {
-	select = 0;
-	selLoc = null;
-
         resources = res;
         display = disp;
         parentFrame = parent;
@@ -192,28 +185,6 @@ public class GUIController<T>
         running = false;
     }
 
-
-
-    /**
-     * NEW BUTTON
-     */
-    public void stuff()
-    {
-	parentFrame.getWorld().stuff();		//calls new method in ActorWorld
-        parentFrame.repaint();
-
-        Grid<T> gr = parentFrame.getWorld().getGrid();
-
-        for (Location loc : gr.getOccupiedLocations())
-            addOccupant(gr.get(loc));
-
-    }
-
-
-
-
-
-
     public boolean isRunning()
     {
         return running;
@@ -227,10 +198,8 @@ public class GUIController<T>
     {
         controlPanel = new JPanel();
         stepButton = new JButton(resources.getString("button.gui.step"));
-	runButton = new JButton(resources.getString("button.gui.run"));
+        runButton = new JButton(resources.getString("button.gui.run"));
         stopButton = new JButton(resources.getString("button.gui.stop"));
-
-        stuffButton = new JButton("stuff");	//NEW JButton
 
         controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.X_AXIS));
         controlPanel.setBorder(BorderFactory.createEtchedBorder());
@@ -244,14 +213,9 @@ public class GUIController<T>
         controlPanel.add(runButton);
         controlPanel.add(Box.createRigidArea(spacer));
         controlPanel.add(stopButton);
-
-	controlPanel.add(stuffButton);			//Adds a NEW Button
-
         runButton.setEnabled(false);
         stepButton.setEnabled(false);
         stopButton.setEnabled(false);
-
-	stuffButton.setEnabled(true);			//Sets NEW JButton to be visible.
 
         controlPanel.add(Box.createRigidArea(spacer));
         controlPanel.add(new JLabel(resources.getString("slider.gui.slow")));
@@ -283,7 +247,7 @@ public class GUIController<T>
                 step();
             }
         });
-       runButton.addActionListener(new ActionListener()
+        runButton.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
@@ -297,15 +261,6 @@ public class GUIController<T>
                 stop();
             }
         });
-
-	stuffButton.addActionListener(new ActionListener()		//NEW ActionListener to do something on event.
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                stuff();						//calls new method
-            }
-        });
-
         speedSlider.addChangeListener(new ChangeListener()
         {
             public void stateChanged(ChangeEvent evt)
@@ -325,33 +280,14 @@ public class GUIController<T>
     }
 
     /**
-     * Callback on mousePressed when editing a grid.  EDITTED TO SHOW MENU CHANGES
+     * Callback on mousePressed when editing a grid.
      */
     private void locationClicked()
     {
         World<T> world = parentFrame.getWorld();
         Location loc = display.getCurrentLocation();
-
-	//if (loc != null && !world.locationClicked(loc))
-        //    		editLocation();
-
-	if (select == 1 && selLoc.equals(loc))			// NEW code to control pop-up menu
-	{
-		if (loc != null && !world.locationClicked(loc))
-            		editLocation();
-	}
-	else
-	{
-		select = 0;
-	}
-
-
-	if (select == 0)
-	{
-		select = 1;
-		selLoc = loc;
-	}
-
+        if (loc != null && !world.locationClicked(loc))
+            editLocation();
         parentFrame.repaint();
     }
 

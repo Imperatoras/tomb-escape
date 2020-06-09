@@ -1,15 +1,31 @@
-//*************import stuff*******************
+package info.gridworld.actor;
+
+import info.gridworld.grid.Grid;
+import info.gridworld.grid.Location;
+
+import java.util.ArrayList;
+import java.awt.Color;
 
 public class Player extends Actor {
   private int health;
   private int keys;
 
-  public Player () {                                   //necessary attributes?
+  public Player () {
+    setColor(null);                                    //necessary attributes?
     health = 3;
     keys = 0;
   }
 
-  public boolean canMove (Location loc) {              //Makes sure there arent walls
+  public void act () {
+    if (getGrid() == null)
+        return;
+    ArrayList<Actor> enemies = getEnemies();
+    if (getHealth() == 0)
+      removeSelfFromGrid();
+    changeHealth(enemies);  
+  }
+
+  public boolean canMove (Location loc) {               //Makes sure there arent walls
     Grid<Actor> gr = getGrid();
     if (gr == null)
         return false;

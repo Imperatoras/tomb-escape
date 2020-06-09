@@ -61,7 +61,7 @@ public class Player extends Actor {
     if (gr == null)
         return;
     Location loc = getLocation();
-    Location next = loc.getAdjacentLocation(NORTH);
+    Location next = loc.getAdjacentLocation(Location.NORTH);
     if (canMove(next)) {
       moveTo(next);
     }
@@ -72,7 +72,7 @@ public class Player extends Actor {
     if (gr == null)
         return;
     Location loc = getLocation();
-    Location next = loc.getAdjacentLocation(SOUTH);
+    Location next = loc.getAdjacentLocation(Location.SOUTH);
     if (canMove(next)) {
       moveTo(next);
     }
@@ -83,7 +83,7 @@ public class Player extends Actor {
     if (gr == null)
         return;
     Location loc = getLocation();
-    Location next = loc.getAdjacentLocation(WEST);
+    Location next = loc.getAdjacentLocation(Location.WEST);
     if (canMove(next)) {
       moveTo(next);
     }
@@ -94,7 +94,7 @@ public class Player extends Actor {
     if (gr == null)
         return;
     Location loc = getLocation();
-    Location next = loc.getAdjacentLocation(EAST);
+    Location next = loc.getAdjacentLocation(Location.EAST);
     if (canMove(next)) {
       moveTo(next);
     }

@@ -17,7 +17,9 @@
  import info.gridworld.actor.ActorWorld;
  import info.gridworld.actor.Wall;
  import info.gridworld.grid.Location;
+ import info.gridworld.actor.Sphinx;
  import info.gridworld.actor.Mummy;
+ import info.gridworld.actor.Fire;
 
  /**
   * This class runs a world that contains a bug and a rock, added at random
@@ -67,10 +69,17 @@
          Mummy agel = new Mummy();
          world.add(new Location(9,5),agel);
          world.show();
+         addSphinx(3,3,world);
      }
      public static void addWall(int x, int y, ActorWorld world){ //cuts out repetitive code in if statements
        Wall a = new Wall(); //abusing a workaround for the "actor already added" error by refreshing
        world.add(new Location(x,y),a);
        a = new Wall();
+     }
+
+     public static void addSphinx(int x, int y, ActorWorld world){
+       Sphinx a = new Sphinx();
+       world.add(new Location(x,y),a);
+       a = new Sphinx();
      }
  }

@@ -14,6 +14,7 @@ public class Player extends Actor {
     setColor(null);                                    //default health + keys
     health = 3;
     keys = 0;
+    ActorWorld.selected = getLocation();
   }
 
   public void act () {
@@ -25,14 +26,15 @@ public class Player extends Actor {
     changeHealth(enemies);
   }
 
-  public boolean canMove (Location loc) {               //Makes sure there arent walls
+  public boolean canMove (Location loc) {
+    System.out.println("canMove was run!");            //Makes sure there arent walls
     Grid<Actor> gr = getGrid();
     if (gr == null)
         return false;
     if (!gr.isValid(loc))
         return false;
     Actor neighbor = gr.get(loc);
-    return !(neighbor == Wall);
+    return !(neighbor instanceof Wall);
   }
 
   public int getHealth () {                             //self-explanatory
@@ -56,12 +58,13 @@ public class Player extends Actor {
       setHealth(temp);
   }
 
-  public void up () {                                   //moves up
+  public void up () {
+    System.out.println("up was run!");                         //moves up
     Grid<Actor> gr = getGrid();
     if (gr == null)
         return;
     Location loc = getLocation();
-    Location next = loc.getAdjacentLocation(NORTH);
+    Location next = loc.getAdjacentLocation(Location.NORTH);
     if (canMove(next)) {
       moveTo(next);
     }
@@ -72,7 +75,7 @@ public class Player extends Actor {
     if (gr == null)
         return;
     Location loc = getLocation();
-    Location next = loc.getAdjacentLocation(SOUTH);
+    Location next = loc.getAdjacentLocation(Location.SOUTH);
     if (canMove(next)) {
       moveTo(next);
     }
@@ -83,7 +86,7 @@ public class Player extends Actor {
     if (gr == null)
         return;
     Location loc = getLocation();
-    Location next = loc.getAdjacentLocation(WEST);
+    Location next = loc.getAdjacentLocation(Location.WEST);
     if (canMove(next)) {
       moveTo(next);
     }
@@ -94,7 +97,7 @@ public class Player extends Actor {
     if (gr == null)
         return;
     Location loc = getLocation();
-    Location next = loc.getAdjacentLocation(EAST);
+    Location next = loc.getAdjacentLocation(Location.EAST);
     if (canMove(next)) {
       moveTo(next);
     }

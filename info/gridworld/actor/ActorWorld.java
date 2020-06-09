@@ -31,7 +31,7 @@ public class ActorWorld extends World<Actor>
 {
     private static final String DEFAULT_MESSAGE = "Click on a grid location to construct or manipulate an actor.";
 
-	private Location selected;		//new variable to move individual actors
+    public static Location selected;		//new variable to move individual actors, made public for ease of access
 
 
     /**
@@ -109,7 +109,7 @@ public class ActorWorld extends World<Actor>
 		x = -1;
 	if(description.equals("D"))
 		x = 1;
-	if(description.equals("X"))
+	if(description.equals("S"))
 		y = 1;
 	Grid<Actor> g = getGrid();
 

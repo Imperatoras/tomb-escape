@@ -11,7 +11,7 @@ public class Player extends Actor {
   private int keys;
 
   public Player () {
-    setColor(null);                                    //necessary attributes?
+    setColor(null);                                    //default health + keys
     health = 3;
     keys = 0;
   }
@@ -22,7 +22,7 @@ public class Player extends Actor {
     ArrayList<Actor> enemies = getEnemies();
     if (getHealth() == 0)
       removeSelfFromGrid();
-    changeHealth(enemies);  
+    changeHealth(enemies);
   }
 
   public boolean canMove (Location loc) {               //Makes sure there arent walls

@@ -19,7 +19,6 @@ public class Sphinx extends Actor
     public Sphinx()
     {
         setColor(null);
-        direct()
         actCount = 0;
         fireSpeed = 10;
     }
@@ -55,6 +54,7 @@ public class Sphinx extends Actor
      */
     public void act()
     {
+      direct();
       Grid<Actor> gr = getGrid();
       Location loc = getLocation();
       Location next = loc.getAdjacentLocation(getDirection());

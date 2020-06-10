@@ -9,11 +9,13 @@ import java.awt.Color;
 public class Player extends Actor {
   private int health;
   private int keys;
+  private int sandLayer; // goes from 0 to 14
 
   public Player () {
     setColor(null);                                    //default health + keys
     health = 3;
     keys = 0;
+    sandLayer = 0;
   }
 
   public void act () {
@@ -23,6 +25,8 @@ public class Player extends Actor {
     if (getHealth() == 0)
       removeSelfFromGrid();
     changeHealth(enemies);
+    if (keys >= 2)
+      addSand(sandLayer);
   }
 
   public boolean canMove (Location loc) {               //Makes sure there arent walls
@@ -41,6 +45,14 @@ public class Player extends Actor {
 
   public void setHealth (int num) {
     health = num;
+  }
+
+  public int getSandLayer() {
+    return sandLayer;
+  }
+
+  public void setSandLayer(int num) {
+    sandLayer = num;
   }
 
   public ArrayList<Actor> getEnemies() {                //gets enemies in surrounding cells
@@ -100,5 +112,14 @@ public class Player extends Actor {
     }
   }
 
-
+  public void addSand(int layer) {
+    int y = 14 - layer;
+    Grid<Actor> gr = getGrid();
+    for (int x = 0; x < 15; x++) {
+      Sand s = new Sand();
+      s.putSelfInGrid(gr, new Location(y, x)); // GridWorld switches x and y
+      s = new Sand();
+    }
+    setSandLayer(layer + 1);
+  }
 }

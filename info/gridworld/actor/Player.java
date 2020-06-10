@@ -11,10 +11,9 @@ public class Player extends Actor {
   private int keys;
 
   public Player () {
-    setColor(null);                                    //default health + keys
+    setColor(null);                                    //necessary attributes?
     health = 3;
     keys = 0;
-    ActorWorld.selected = getLocation();
   }
 
   public void act () {
@@ -26,8 +25,7 @@ public class Player extends Actor {
     changeHealth(enemies);
   }
 
-  public boolean canMove (Location loc) {
-    System.out.println("canMove was run!");            //Makes sure there arent walls
+  public boolean canMove (Location loc) {               //Makes sure there arent walls
     Grid<Actor> gr = getGrid();
     if (gr == null)
         return false;
@@ -58,8 +56,7 @@ public class Player extends Actor {
       setHealth(temp);
   }
 
-  public void up () {
-    System.out.println("up was run!");                         //moves up
+  public void up () {                                   //moves up
     Grid<Actor> gr = getGrid();
     if (gr == null)
         return;

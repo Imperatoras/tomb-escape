@@ -121,6 +121,7 @@ public class ActorWorld extends World<Actor>
 	       	        selected = new Location(selected.getRow() + y, selected.getCol() + x);
 			obj.moveTo(selected);
 		}
+    step();
 	}
         return false;
     }

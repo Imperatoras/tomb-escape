@@ -17,11 +17,16 @@ public class Player extends Actor {
   }
 
   public void act () {
-    if (getGrid() == null)
+    Grid<Actor> gr = getGrid();
+    if (gr == null)
         return;
+    Location loc = getLocation();
     ArrayList<Actor> enemies = getEnemies();
-    if (getHealth() == 0)
+    if (getHealth() == 0) {
       removeSelfFromGrid();
+      Skull skull = new Skull();
+      skull.putSelfInGrid(gr,loc);
+    }
     changeHealth(enemies);
   }
 

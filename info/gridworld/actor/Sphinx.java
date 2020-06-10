@@ -55,6 +55,7 @@ public class Sphinx extends Actor
      */
     public void act()
     {
+      direct();
       Grid<Actor> gr = getGrid();
       Location loc = getLocation();
       Location next = loc.getAdjacentLocation(getDirection());

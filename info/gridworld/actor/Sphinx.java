@@ -19,7 +19,6 @@ public class Sphinx extends Actor
     public Sphinx()
     {
         setColor(null);
-        direct();
         actCount = 0;
         fireSpeed = 10;
     }

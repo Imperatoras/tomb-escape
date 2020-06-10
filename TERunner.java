@@ -66,7 +66,7 @@
          }
          Mummy agel = new Mummy();
          world.add(new Location(9,5),agel);
-         //addSphinx(3,3,world);
+         addSphinx(3,3,world);
          Player you = new Player();
          world.add(new Location(9,9),you);
          world.show();

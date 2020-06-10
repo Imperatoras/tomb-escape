@@ -62,13 +62,18 @@
              if(x==8 && y<12){
                addWall(x,y,world);
              }
+             //mummy generation
+             //sphinx generation
+             if(x==11 && (y%3==0 && y>2)){
+               addSphinx(x,y,world);
+             }
+             addMummy(13,1,world);
            }
          }
-         Mummy agel = new Mummy();
-         world.add(new Location(9,5),agel);
-         addSphinx(3,3,world);
+         //add player last
          Player you = new Player();
-         world.add(new Location(9,9),you);
+         world.add(new Location(13,13),you);
+         ActorWorld.selected = you.getLocation();
          world.show();
      }
      public static void addWall(int x, int y, ActorWorld world){ //cuts out repetitive code in if statements
@@ -77,6 +82,11 @@
        a = new Wall();
      }
 
+     public static void addMummy(int x, int y, ActorWorld world){
+       Mummy a = new Mummy();
+       world.add(new Location(x,y),a);
+       a = new Mummy();
+     }
      public static void addSphinx(int x, int y, ActorWorld world){
        Sphinx a = new Sphinx();
        world.add(new Location(x,y),a);

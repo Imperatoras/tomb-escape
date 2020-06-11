@@ -75,17 +75,10 @@
              if(x==11 && (y%3==0 && y>2)){
                addSphinx(x,y,world);
              }
-             //cube filled with MUMMIESSSSS
-             if((x>0 && x<4) && (y>0 && y<4)){
-               addMummy(x,y,world);
-             }
 
            }
            //mummy generation
-           addMummy(12,1,world);
-           addMummy(12,2,world);
-           addMummy(5,1,world);
-           addMummy(7,1,world);
+           addMummy(9,1,90,world);
            //sphinx generation
            addSphinx(4,4,world);
            addSphinx(4,10,world);
@@ -102,10 +95,10 @@
        a = new Wall();
      }
 
-     public static void addMummy(int x, int y, ActorWorld world){
-       Mummy a = new Mummy();
+     public static void addMummy(int x, int y, int dir, ActorWorld world){
+       Mummy a = new Mummy(dir);
        world.add(new Location(x,y),a);
-       a = new Mummy();
+       a = new Mummy(dir);
      }
      public static void addSphinx(int x, int y, ActorWorld world){
        Sphinx a = new Sphinx();

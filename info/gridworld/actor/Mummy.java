@@ -14,12 +14,10 @@ public class Mummy extends Actor
     /**
      * Constructs a mummy
      */
-    public Mummy()
+    public Mummy(int dir)
     {
         setColor(null);
-        int dir = (int)(Math.random() * 4) * 90;
         setDirection(dir);
-        // set the direction randomly to either north, south, east, or west
     }
 
     /**
@@ -35,7 +33,7 @@ public class Mummy extends Actor
 
     public void turn()
     {
-        setDirection(getDirection() + Location.RIGHT);
+        setDirection(getDirection() + Location.HALF_CIRCLE);
     }
 
     /**

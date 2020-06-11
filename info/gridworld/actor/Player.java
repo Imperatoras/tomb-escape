@@ -31,6 +31,18 @@ public class Player extends Actor {
         }
       }
     }
+    for(int a=6; a<9; a++){ //if player in win zone
+      Location winLoc = new Location(0,a);
+      if(gr.get(winLoc) instanceof Player){
+        for(int x = 0; x < 15; x++){
+          for(int y = 0; y < 15; y++){
+            Location tile = new Location(x,y);
+            Anubis anu = new Anubis();
+            anu.putSelfInGrid(gr, tile);
+          }
+        }
+      }
+    }
     changeHealth(enemies);
   }
 

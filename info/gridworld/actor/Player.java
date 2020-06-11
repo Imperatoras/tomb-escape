@@ -23,9 +23,13 @@ public class Player extends Actor {
     Location loc = getLocation();
     ArrayList<Actor> enemies = getEnemies();
     if (getHealth() == 0) {
-      removeSelfFromGrid();
-      Skull skull = new Skull();
-      skull.putSelfInGrid(gr,loc);
+      for(int x = 0; x < 15; x++){
+        for(int y = 0; y < 15; y++){
+          Location tile = new Location(x,y);
+          Skull a = new Skull();
+          a.putSelfInGrid(gr, tile);
+        }
+      }
     }
     changeHealth(enemies);
   }

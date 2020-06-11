@@ -35,7 +35,7 @@ public class Mummy extends Actor
 
     public void turn()
     {
-        setDirection(getDirection() + Location.HALF_CIRCLE);
+        setDirection(getDirection() + Location.RIGHT);
     }
 
     /**

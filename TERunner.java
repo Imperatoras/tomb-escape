@@ -71,13 +71,24 @@
              if(x==8 && y<12){
                addWall(x,y,world);
              }
-             //mummy generation
-             //sphinx generation
+             //wall of sphinxes at bottom
              if(x==11 && (y%3==0 && y>2)){
                addSphinx(x,y,world);
              }
-             addMummy(13,1,world);
+             //cube filled with MUMMIESSSSS
+             if((x>0 && x<4) && (y>0 && y<4)){
+               addMummy(x,y,world);
+             }
+
            }
+           //mummy generation
+           addMummy(12,1,world);
+           addMummy(12,2,world);
+           addMummy(5,1,world);
+           addMummy(7,1,world);
+           //sphinx generation
+           addSphinx(4,4,world);
+           addSphinx(4,10,world);
          }
          //add player last
          Player you = new Player();

@@ -28,7 +28,7 @@ public class Fire extends Actor {
   }
 
   /**
-   * Moves the mummy forward.
+   * Moves the fire forward.
    */
   public void move()
   {
@@ -58,6 +58,7 @@ public class Fire extends Actor {
       if (!gr.isValid(next))
           return false;
       Actor neighbor = gr.get(next);
-      return (neighbor == null) || !(neighbor instanceof Wall);
+      return (neighbor == null) || (!(neighbor instanceof Wall) &&
+                                    !(neighbor instanceof Actor));
   }
 }

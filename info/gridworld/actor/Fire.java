@@ -21,14 +21,32 @@ public class Fire extends Actor {
   /* moves if can move otherwise removes self from grid */
   public void act()
   {
+      if (getGrid() == null)
+          return;
+      ArrayList<Actor> actors = getActors();
+      processActors(actors);
       if (canMove())
           move();
       else
           removeSelfFromGrid();
   }
 
+  public ArrayList<Actor> getActors()
+  {
+      return getGrid().getNeighbors(getLocation());
+  }
+
+  public void processActors(ArrayList<Actor> actors)
+  {
+      for (Actor a : actors)
+      {
+          if (!(a instanceof Wall))
+              removeSelfFromGrid();
+      }
+  }
+
   /**
-   * Moves the mummy forward.
+   * Moves the fire forward.
    */
   public void move()
   {

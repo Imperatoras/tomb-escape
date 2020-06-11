@@ -55,7 +55,7 @@ public class Player extends Actor {
   public void changeHealth(ArrayList<Actor> actors) {
       int temp = getHealth();
       for (Actor a : actors) {
-          if (!(a instanceof Wall))
+          if (!(a instanceof Wall) || !(a instanceof Sphinx))
             temp--;
       }
       setHealth(temp);

@@ -1,4 +1,4 @@
-/* 
+/*
  * AP(r) Computer Science GridWorld Case Study:
  * Copyright(c) 2005-2006 Cay S. Horstmann (http://horstmann.com)
  *
@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * @author Cay Horstmann
  */
 
@@ -104,6 +104,10 @@ public class Actor
         return location;
     }
 
+    public boolean canMove (Location loc) {
+      return false;
+    }
+
     /**
      * Puts this actor into a grid. If there is another actor at the given
      * location, it is removed. <br />
@@ -177,7 +181,7 @@ public class Actor
     /**
      * Reverses the direction of this actor. Override this method in subclasses
      * of <code>Actor</code> to define types of actors with different behavior
-     * 
+     *
      */
     public void act()
     {

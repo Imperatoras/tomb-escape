@@ -118,8 +118,10 @@ public class ActorWorld extends World<Actor>
 		Actor obj = g.get(selected);
 		if (obj != null )
 		{
-	       	        selected = new Location(selected.getRow() + y, selected.getCol() + x);
-			obj.moveTo(selected);
+	    selected = new Location(selected.getRow() + y, selected.getCol() + x);
+      if (obj.canMove(selected)) {
+      obj.moveTo(selected);
+    }
 		}
     step();
 	}

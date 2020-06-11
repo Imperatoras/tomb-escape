@@ -21,28 +21,10 @@ public class Fire extends Actor {
   /* moves if can move otherwise removes self from grid */
   public void act()
   {
-      if (getGrid() == null)
-          return;
-      ArrayList<Actor> actors = getActors();
-      processActors(actors);
       if (canMove())
           move();
       else
           removeSelfFromGrid();
-  }
-
-  public ArrayList<Actor> getActors()
-  {
-      return getGrid().getNeighbors(getLocation());
-  }
-
-  public void processActors(ArrayList<Actor> actors)
-  {
-      for (Actor a : actors)
-      {
-          if (!(a instanceof Wall))
-              removeSelfFromGrid();
-      }
   }
 
   /**
@@ -76,6 +58,7 @@ public class Fire extends Actor {
       if (!gr.isValid(next))
           return false;
       Actor neighbor = gr.get(next);
-      return (neighbor == null) || !(neighbor instanceof Wall);
+      return (neighbor == null) || (!(neighbor instanceof Wall) &&
+                                    !(neighbor instanceof Actor));
   }
 }

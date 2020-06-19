@@ -21,10 +21,17 @@ public class Fire extends Actor {
   /* moves if can move otherwise removes self from grid */
   public void act()
   {
-      if (canMove())
+      if (canMove()) {
           move();
-      else
-          removeSelfFromGrid();
+      }
+      else {
+        Location loc = getLocation();
+        Location next = loc.getAdjacentLocation(getDirection());
+        if (next instanceof Player) {
+          next.setHealth(next.getHealth() - 1);
+        }
+        removeSelfFromGrid();
+      }
   }
 
   /**

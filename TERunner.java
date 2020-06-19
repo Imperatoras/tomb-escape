@@ -79,9 +79,13 @@
            }
            //mummy generation
            addMummy(9,1,90,world);
+           addMummy(5,13,270,world);
+           addMummy(7,1,90,world);
            //sphinx generation
            addSphinx(4,4,world);
            addSphinx(4,10,world);
+           addSphinx(2,2,world);
+           addSphinx(2,12,world);
          }
          //add player last
          Player you = new Player();

@@ -17,3 +17,9 @@ THINGS TO NOTE:
 -Controls: WASD to move
 -If you die, the screen will be covered in skulls. If you win, the screen will be covered in Anubis statuette art.
 -All of the pixel art IS in fact original :)
+
+BUGS:
+-The sphinx's fire doesn't actually damage you. It does occasionally make you completely disappear.
+-Walking into walls can cause the player to glitch.
+
+Hello folks! Welcome to GitHub!
